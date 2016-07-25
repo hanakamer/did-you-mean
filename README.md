@@ -31,9 +31,10 @@ xx az'yi ab'ye çevirmek 1
 Değişik olan harf geldiğinde yazacağımız sayıya nasıl karar veriyoruz?
 yazacağımız kutunun solu, çaprazı ve üstündeki kutular arasında en küçük değere sahip olan değere 1 eklenir.
 
+```python
 |a|b|
 |c|X|
-
+```
 Yukarıdaki gibi X in yerine yazacağımız değer min(a,b,c)+1 dir.
 
 Yani özetle elimizde az ve abcdef şeklinde iki kelime varsa; birini digerine çevirmek için 5 değişiklik yapmak gerekir.
