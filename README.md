@@ -49,7 +49,7 @@ bir kelimeyi baska bir kelimeye cevirmek icin gerekli olan duzenleme sayisi. Bu 
 Bizim durumumuzda text trainig yapmiyoruz. Cunku elimizde tek bir referans var o da txt dosyasidir. Bu problemde izlenecek yaklasim; kullanicinin girdigi kelimenin, txt dosyasindaki her kelimeye olan "degisim uzakligi"ini (edit distance) hesaplayip en yakin olanini donmektir. Burada soz konusu olan degisim bir harfin silinmesi/eklenmesi (kaset <-> kase), ardisik iki harfin birbiri ile yer degistirmesi (akca <-> kaca) veya bir harfin baska bir harf olarak degistirilmesi (kac <-> koc) olabilir.
 Min Edit Distance
 
-‘‘‘
+```python
 _|_|a|b|c|d|e|f
 _|0|1|2|3|4|5|6
 a|1|0|1|2|3|4|5 *
@@ -57,7 +57,7 @@ z|2|1|1|2|3|4|5 **
 c|3|2|2|1|2|3|4 ***
 e|4|3|3|2|2|2|3
 d|5|4|4|3|2|3|3
-‘‘‘
+```
 
 * a'yi _'ya cevirmek 1
 * a'yi a'ya cevirmek 0
