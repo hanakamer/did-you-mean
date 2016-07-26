@@ -10,30 +10,93 @@ Min Edit Distance
 
 ```python
 _|_|a|b|c|d|e|f
-_|0|1|2|3|4|5|6
-a|1|0|1|2|3|4|5 x
-z|2|1|1|2|3|4|5 xx
-c|3|2|2|1|2|3|4 xxx
-e|4|3|3|2|2|2|3
+_|0|1|2|3|4|5|6 0.satır
+a|1|0|1|2|3|4|5 1.satır
+z|2|1|1|2|3|4|5 2.satır
+c|3|2|2|1|2|3|4 3.satır
+e|4|3|3|2|2|2|3 4.satır
 d|5|4|4|3|2|3|3
 ```
+Satır 0'dan başladığımızda ' ' (boşluk) ile 'abcdef' yazısı arasındaki uzaklığı adım adım ölçmüş oluyoruz.
 
-x a'yi _'ya çevirmek 1
+```python
+      |
+      V
+    _|_|a|b|c|d|e|f
+ -> _|0|1|2|3|4|5|6 0.satır  ('' ile '' arasında 0 fark var)
+    a|1|0|1|2|3|4|5 1.satır
+    z|2|1|1|2|3|4|5 2.satır
+    c|3|2|2|1|2|3|4 3.satır
+    e|4|3|3|2|2|2|3 4.satır
+    d|5|4|4|3|2|3|3
+```
 
-x a'yi a'ya çevirmek 0
+```python
+        |
+      * V
+    _|_|a|b|c|d|e|f
+ -> _|0|1|2|3|4|5|6 0.satır  ('' ile 'a' arasında 1 fark var, a'nın eklenmesi)
+    a|1|0|1|2|3|4|5 1.satır
+    z|2|1|1|2|3|4|5 2.satır
+    c|3|2|2|1|2|3|4 3.satır
+    e|4|3|3|2|2|2|3 4.satır
+    d|5|4|4|3|2|3|3
+```
 
-x a'yi ab'ye çevirmek 1 (b'yi silmek)
+```python
+          |
+      * * V
+    _|_|a|b|c|d|e|f
+ -> _|0|1|2|3|4|5|6 0.satır  ('' ile 'ab' arasında 2 fark var, a ve b'nin eklenmesi)
+    a|1|0|1|2|3|4|5 1.satır
+    z|2|1|1|2|3|4|5 2.satır
+    c|3|2|2|1|2|3|4 3.satır
+    e|4|3|3|2|2|2|3 4.satır
+    d|5|4|4|3|2|3|3
+```
 
-x a'yi abc'ye çevirmek 2 (b ve c'yi silmek)
-
-x ...
 
 
-xx az'yi _ çevirmek 2 (az eklemek)
+```python
+            |
+      * * * V
+    _|_|a|b|c|d|e|f
+ -> _|0|1|2|3|4|5|6 0.satır  ('' ile 'abc' arasında 3 fark var, a, b ve c'nin eklenmesi)
+    a|1|0|1|2|3|4|5 1.satır
+    z|2|1|1|2|3|4|5 2.satır
+    c|3|2|2|1|2|3|4 3.satır
+    e|4|3|3|2|2|2|3 4.satır
+    d|5|4|4|3|2|3|3
+```
+Satir 0'da aynı şekilde ilerlediğimizde sonuç olarak ' ' ile 'abcdef' yazısı arasında 6 değişim olduğunu ve bunun 6 harfin eklenmesi olduğunu görürüz.
 
-xx az'yi a'ya çevirmek 1 (z'yi eklemek) 
 
-xx az'yi ab'ye çevirmek 1
+Satır 1'e geçtiğimizde:
+
+```python
+      |
+      V
+    _|_|a|b|c|d|e|f
+  * _|0|1|2|3|4|5|6 0.satır  
+ -> a|1|0|1|2|3|4|5 1.satır ('a' ile '' arasında 1 fark var)
+    z|2|1|1|2|3|4|5 2.satır
+    c|3|2|2|1|2|3|4 3.satır
+    e|4|3|3|2|2|2|3 4.satır
+    d|5|4|4|3|2|3|3
+```
+
+```python
+        |
+      * V
+    _|_|a|b|c|d|e|f
+  * _|0|1|2|3|4|5|6 0.satır  
+ -> a|1|0|1|2|3|4|5 1.satır ('a' ile 'a' arasında 0 fark var)
+    z|2|1|1|2|3|4|5 2.satır
+    c|3|2|2|1|2|3|4 3.satır
+    e|4|3|3|2|2|2|3 4.satır
+    d|5|4|4|3|2|3|3
+```
+
 
 
 Değişik olan harf geldiğinde yazacağımız sayıya nasıl karar veriyoruz?
@@ -47,5 +110,5 @@ Yukarıdaki gibi X in yerine yazacağımız değer min(a,b,c)+1 dir.
 
 Yani özetle elimizde az ve abcdef şeklinde iki kelime varsa; birini digerine çevirmek için 5 değişiklik yapmak gerekir.
 
-xxx Bu satırda da bir önceki satırların işlemlerini devam ettiriyoruz. Burada farklı olarak karşılaşacağımız şey aynı harfe denk gelmemiz durumunda yağacağımız değerlendirme.
+Satır 2'de bir önceki satırların işlemlerini devam ettiriyoruz. Burada farklı olarak karşılaşacağımız şey aynı harfe denk gelmemiz durumunda yağacağımız değerlendirme.
 Yani abc ve azc'deki c harfi. Bu durum ab nin az ye dönmesi ile aynıdır çünkü c harfi bir değişikliğe sebep olmaz. Özetle kutunun çaprazındaki değer alınır.
