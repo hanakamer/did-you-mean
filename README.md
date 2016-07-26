@@ -8,7 +8,7 @@ Bizim durumumuzda text trainig yapmiyoruz. Çünkü elimizde tek bir referans va
 
 Min Edit Distance
 
-```python
+```
 _|_|a|b|c|d|e|f
 _|0|1|2|3|4|5|6 0.satır
 a|1|0|1|2|3|4|5 1.satır
@@ -19,7 +19,7 @@ d|5|4|4|3|2|3|3
 ```
 Satır 0'dan başladığımızda ' ' (boşluk) ile 'abcdef' yazısı arasındaki uzaklığı adım adım ölçmüş oluyoruz.
 
-```python
+```
       |
       V
     _|_|a|b|c|d|e|f
@@ -31,7 +31,7 @@ Satır 0'dan başladığımızda ' ' (boşluk) ile 'abcdef' yazısı arasındaki
     d|5|4|4|3|2|3|3
 ```
 
-```python
+```
         |
       * V
     _|_|a|b|c|d|e|f
@@ -43,7 +43,7 @@ Satır 0'dan başladığımızda ' ' (boşluk) ile 'abcdef' yazısı arasındaki
     d|5|4|4|3|2|3|3
 ```
 
-```python
+```
           |
       * * V
     _|_|a|b|c|d|e|f
@@ -57,7 +57,7 @@ Satır 0'dan başladığımızda ' ' (boşluk) ile 'abcdef' yazısı arasındaki
 
 
 
-```python
+```
             |
       * * * V
     _|_|a|b|c|d|e|f
@@ -73,7 +73,7 @@ Satir 0'da aynı şekilde ilerlediğimizde sonuç olarak ' ' ile 'abcdef' yazıs
 
 Satır 1'e geçtiğimizde:
 
-```python
+```
       |
       V
     _|_|a|b|c|d|e|f
@@ -85,7 +85,7 @@ Satır 1'e geçtiğimizde:
     d|5|4|4|3|2|3|3
 ```
 
-```python
+```
         |
       * V
     _|_|a|b|c|d|e|f
@@ -97,12 +97,22 @@ Satır 1'e geçtiğimizde:
     d|5|4|4|3|2|3|3
 ```
 
-
+```
+          |
+      * * V
+    _|_|a|b|c|d|e|f
+  * _|0|1|2|3|4|5|6 0.satır  
+ -> a|1|0|1|2|3|4|5 1.satır ('a' ile 'ab' arasında 1 fark var, b nin eklenmesi)
+    z|2|1|1|2|3|4|5 2.satır
+    c|3|2|2|1|2|3|4 3.satır
+    e|4|3|3|2|2|2|3 4.satır
+    d|5|4|4|3|2|3|3
+```
 
 Değişik olan harf geldiğinde yazacağımız sayıya nasıl karar veriyoruz?
-yazacağımız kutunun solu, çaprazı ve üstündeki kutular arasında en küçük değere sahip olan değere 1 eklenir.
+Yazacağımız kutunun solu, çaprazı ve üstündeki kutular arasında en küçük değere sahip olan değere 1 eklenir.
 
-```python
+```
 |a|b|
 |c|X|
 ```
