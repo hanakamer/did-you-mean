@@ -2,10 +2,10 @@ import re
 import time
 start_time = time.time()
 
-def getWords(text):
+def get_words(text):
     return re.compile('\w+').findall(text.lower())
 
-def editDistance(str1, str2):
+def edit_distance(str1, str2):
     str1 = ' ' + str1
     str2 = ' ' + str2
     d = {}
@@ -24,15 +24,18 @@ def editDistance(str1, str2):
                 d[i, j] = min(d[i-1, j], d[i, j-1], d[i-1, j-1]) + 1;
     return d[x-1, y-1]
 
-def minEditDistance(query):
+words = file('words.txt').read()
+words_list = get_words(words)
+
+def min_edit_distance(query):
     query = query.lower()
     my_dict = {}
     for i in range (len(words_list)):
-        result = editDistance(query, words_list[i])
+        result = edit_distance(query, words_list[i])
         my_dict[words_list[i]] = result
     return min(my_dict, key=my_dict.get)
 
-words = file('words.txt').read()
-words_list = getWords(words)
-print minEditDistance('BURAK')
-print("--- %s seconds ---" % (time.time() - start_time))
+if __name__ =='__main__':
+    result = min_edit_distance('Masal')
+    print(result)
+    print("--- %s seconds ---" % (time.time() - start_time))
