@@ -19,14 +19,22 @@ d|5|4|4|3|2|3|3
 ```
 
 x a'yi _'ya çevirmek 1
+
 x a'yi a'ya çevirmek 0
+
 x a'yi ab'ye çevirmek 1 (b'yi silmek)
+
 x a'yi abc'ye çevirmek 2 (b ve c'yi silmek)
+
 x ...
 
+
 xx az'yi _ çevirmek 2 (az eklemek)
+
 xx az'yi a'ya çevirmek 1 (z'yi eklemek) 
+
 xx az'yi ab'ye çevirmek 1
+
 
 Değişik olan harf geldiğinde yazacağımız sayıya nasıl karar veriyoruz?
 yazacağımız kutunun solu, çaprazı ve üstündeki kutular arasında en küçük değere sahip olan değere 1 eklenir.
